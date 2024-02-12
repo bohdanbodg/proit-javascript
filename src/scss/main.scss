@@ -1,0 +1,22 @@
+@use "sass:math";
+
+@tailwind base;
+@layer base {
+  $headings: 1 text-5xl font-extrabold, 2 text-4xl, 3 text-3xl, 4 text-2xl,
+    5 text-xl, 6 text-lg;
+  @each $n, $size, $weight in $headings {
+    h#{$n} {
+      $weight: if($weight, $weight, font-bold);
+      $marginTop: math.round(math.div(7 - $n, 2));
+      $marginBottom: 7 - $n;
+      @apply #{$size};
+      @apply #{$weight};
+      @apply mt-#{$marginTop};
+      @apply mb-#{$marginBottom};
+    }
+  }
+}
+
+@tailwind components;
+
+@tailwind utilities;
